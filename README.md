@@ -65,13 +65,26 @@ To run this code, you must prepare your own tokenized dataset files:
 ## 🚀 How to Run
 
   Install dependencies. Then run the script
-  ```python
-  pip install torch numpy
-  python cbow_training.py
+  1. ```python
+    pip install torch numpy
+    python cbow_training.py
 
 
-## Features of This Implemetation
+## 🔍 Features of This Implemetation
+Three weighting strategies:
+- Fixed scalar (hardcoded)
+- Learnable scalar (train a scalar per position)
+- Learnable vector (train full embedding per position)
 
+Training loss and validation loss printed per epoch.
+Robust: Safe handling if validation dataset is too small.
+Word similarity and analogy evaluation (optional WordVector class).
 
+## 💡 Future Improvements and Ideas
+Add learning rate scheduler
+Hyperparameter optimization
+Visualization of embeddings (PCA or t-SNE)
+Early stopping on validation loss
+Batch context window adjustment
   
 
