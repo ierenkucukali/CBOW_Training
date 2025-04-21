@@ -80,6 +80,20 @@ Training loss and validation loss printed per epoch.
 Robust: Safe handling if validation dataset is too small.
 Word similarity and analogy evaluation (optional WordVector class).
 
+## Word Embedding Analysis (Similarity and Analogy)
+Finding Most Similar Words: After training the model, you can use the WordVector class to analyze the learned embeddings:
+1. This will return a list of the 5 most similar words based on cosine similarity.
+   ```python
+    # Initialize WordVector analysis
+    word_vector_tool = WordVector(model, idx_to_word)
+    # Find top-5 most similar words to a given word
+    word_vector_tool.most_similar(vocab['example_word'], top_k=5)
+2. Solving Word Analogies: This will return the most likely word vector result for the analogy.
+   ```python
+    # Example analogy: king - man + woman = queen
+    word_vector_tool.analogy(vocab['man'], vocab['king'], vocab['woman'], top_k=1)
+
+
 ## 💡 Future Improvements and Ideas
 Add learning rate scheduler
 Hyperparameter optimization
