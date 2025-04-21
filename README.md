@@ -64,13 +64,13 @@ To run this code, you must prepare your own tokenized dataset files:
 
 ## 🚀 How to Run
 
-  Install dependencies
+  Install dependencies. Then run the script
   ```python
   pip install torch numpy
-
-  Then run the script
-  ```python
   python cbow_training.py
+
+
+## Features of This Implemetation
 
 
   
