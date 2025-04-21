@@ -7,10 +7,7 @@ import numpy as np
 import os
 import random
 
-# ------------------------------
-# Settings (you can modify these)
-# ------------------------------
-TRAIN_FILE = "your_train_tokens_file"
+TRAIN_FILE = "your_train_tokens_file" # enter your train tokens that you got from internet
 VALID_FILE = "your_validation_tokens_file"
 TEST_FILE = "your_test_tokens_file"
 
@@ -32,9 +29,6 @@ def build_vocab(tokens, min_count=1):
     idx_to_word = {idx: word for word, idx in vocab.items()}
     return vocab, idx_to_word
 
-# ------------------------------
-# Dataset Class
-# ------------------------------
 class CBOWDataset(Dataset):
     def __init__(self, tokens, vocab, context_size):
         self.data = []
@@ -54,9 +48,8 @@ class CBOWDataset(Dataset):
     def __getitem__(self, idx):
         return torch.tensor(self.data[idx][0]), torch.tensor(self.data[idx][1])
 
-# ------------------------------
+
 # CBOW Model
-# ------------------------------
 class CBOWModel(nn.Module):
     def __init__(self, vocab_size, embedding_dim, context_size, strategy):
         super(CBOWModel, self).__init__()
@@ -86,9 +79,7 @@ class CBOWModel(nn.Module):
         out = self.linear(context_embed)
         return out
 
-# ------------------------------
 # Training Function
-# ------------------------------
 def train_model(model, train_loader, valid_loader, optimizer, criterion, device):
     model.train()
     for epoch in range(EPOCHS):
@@ -104,9 +95,7 @@ def train_model(model, train_loader, valid_loader, optimizer, criterion, device)
         print(f"Epoch {epoch+1}/{EPOCHS}, Training Loss: {total_loss/len(train_loader):.4f}")
         validate_model(model, valid_loader, criterion, device)
 
-# ------------------------------
 # Validation Function
-# ------------------------------
 def validate_model(model, valid_loader, criterion, device):
     model.eval()
     if len(valid_loader) == 0:
@@ -122,9 +111,7 @@ def validate_model(model, valid_loader, criterion, device):
     print(f"Validation Loss: {total_loss/len(valid_loader):.4f}")
 
 
-# ------------------------------
 # Word Vector Analysis Class
-# ------------------------------
 class WordVector:
     def __init__(self, model, idx_to_word):
         self.embeddings = model.embeddings.weight.data.cpu().numpy()
@@ -142,9 +129,7 @@ class WordVector:
         sorted_idx = np.argsort(-sims)
         return [(self.idx_to_word[idx], sims[idx]) for idx in sorted_idx[:top_k]]
 
-# ------------------------------
-# Main Execution
-# ------------------------------
+
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
