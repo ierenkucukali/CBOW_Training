@@ -52,3 +52,26 @@ To run this code, you must prepare your own tokenized dataset files:
    TRAIN_FILE = "your_train_tokens_file"
    VALID_FILE = "your_validation_tokens_file"
    TEST_FILE = "your_test_tokens_file"
+
+2. Adjust hyperparameters if needed:
+   ```python
+   EMBEDDING_DIM = 128
+   BATCH_SIZE = 512
+   EPOCHS = 10
+   CONTEXT_SIZE = 3
+   LEARNING_RATE = 0.001
+   WEIGHT_STRATEGY = "fixed"  # options: "fixed", "scalar", "vector"
+
+## 🚀 How to Run
+
+  Install dependencies
+  ```python
+  pip install torch numpy
+
+  Then run the script
+  ```python
+  python cbow_training.py
+
+
+  
+
